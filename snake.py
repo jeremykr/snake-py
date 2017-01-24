@@ -65,7 +65,7 @@ def add_tuples(t1, t2):
 # Return high score.
 def process_score(current_score):
 	high_score = 0
-	with open("./snake_scores.txt", "r") as f:
+	with open("./snake_scores.txt", "r+") as f:
 		try:
 			high_score = int([line for line in f][0])
 		except:
@@ -161,10 +161,7 @@ def draw(snake, crumb):
 		screen += border_colour + "| " + bcolors.ENDC
 		for col in range(0, grid_size):
 			if (col, row) in list(map(lambda s: s.position, snake.body)):
-				if (col, row) == snake.body[0].position:
-					screen += snake_colour + "o" + bcolors.ENDC
-				else:
-					screen += snake_colour + "·" + bcolors.ENDC
+				screen += snake_colour + "o" + bcolors.ENDC
 			elif (col, row) == crumb.position:
 				screen += crumb_colour + "x" + bcolors.ENDC
 			else:
